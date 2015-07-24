@@ -6,4 +6,4 @@
 *.srec
 *.bin
 *.pyc
-tools/*
+tools/gcc-arm-none-eabi-4_9-2015q3/*
