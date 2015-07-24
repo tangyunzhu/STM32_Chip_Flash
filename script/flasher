@@ -1,0 +1,28 @@
+#!/bin/sh
+	if [ $# -eq 0 ];then
+		echo "usge:./flasher  xxxx.bin"
+		exit
+	fi
+	pwd
+	echo 49 >  /sys/class/gpio/export
+	echo 117 >  /sys/class/gpio/export
+	echo out > /sys/class/gpio/gpio49/direction
+	echo out > /sys/class/gpio/gpio117/direction
+	
+	echo 0 > /sys/class/gpio/gpio49/value
+	echo 1 > /sys/class/gpio/gpio117/value
+
+	echo 0 > /sys/class/gpio/gpio49/value
+	echo 1 > /sys/class/gpio/gpio49/value
+
+	python ./script/stm32loader.py -p /dev/ttyO2 -evw  $1
+	if [$?==0];then
+		exit
+	else
+		python ./script/stm32loader.py -p /dev/ttyO2 -evw $1
+	fi
+	
+	echo 0 > /sys/class/gpio/gpio49/value
+	echo 0 > /sys/class/gpio/gpio117/value		
+	sleep 1
+	echo 1 > /sys/class/gpio/gpio49/value
