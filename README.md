@@ -1,5 +1,6 @@
 # raptor_project
-develop mbed sdk on beaglebone or raspberry pi .
+develop mbed sdk on beaglebone or raspberry pi.
+
 on beaglebone green, connect your board and PC with usb wire . open the cloud 9 on your bower http://192.168.7.2:3000/ide.html 
 after system booting.
 click windows -> New Teriminal
