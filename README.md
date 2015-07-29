@@ -6,6 +6,7 @@ click windows -> New Teriminal
 then type linux order
 
 $cd examples
+
 $git clone https://github.com/Pillar1989/raptor_project/
 
 #compile all the project, it will decompress gcc tools in first time
