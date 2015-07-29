@@ -1,9 +1,11 @@
 *~
 *.o
+*.d
 *.elf
 *.hex
 *.lst
 *.srec
 *.bin
 *.pyc
+*.map
 tools/gcc-arm-none-eabi-4_9-2015q3/*

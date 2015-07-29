@@ -48,9 +48,7 @@ void pwmout_init(pwmout_t* obj, PinName pin)
     }
 
     // Enable TIM clock
-#if defined(TIM1_BASE)
     if (obj->pwm == PWM_1) __TIM1_CLK_ENABLE();
-#endif
 #if defined(TIM2_BASE)
     if (obj->pwm == PWM_2) __TIM2_CLK_ENABLE();
 #endif
@@ -104,36 +102,32 @@ void pwmout_write(pwmout_t* obj, float value)
 #if defined (TARGET_STM32F030R8) || defined (TARGET_STM32F051R8)
     switch (obj->pin) {
         // Channels 1
-        case PA_4:
-        case PA_6:
-        case PB_1:
         case PB_4:
+				case PA_8:
         case PB_8:
-        case PB_9:
-        case PB_14:
-        case PC_6:
+				case PB_9:
+				case PA_2:
+				case PA_6:
             channel = TIM_CHANNEL_1;
             break;
         // Channels 1N
-        case PB_6:
-        case PB_7:
-            channel = TIM_CHANNEL_1;
-            complementary_channel = 1;
-            break;
+//        case PB_6:
+//        case PB_7:
+//            channel = TIM_CHANNEL_1;
+//            complementary_channel = 1;
+//            break;
         // Channels 2
-        case PA_7:
         case PB_5:
-        case PB_15:
-        case PC_7:
+				case PA_3:
             channel = TIM_CHANNEL_2;
             break;
         // Channels 3
         case PB_0:
-        case PC_8:
             channel = TIM_CHANNEL_3;
             break;
         // Channels 4
-        case PC_9:
+        case PB_1:
+				case PA_11:
             channel = TIM_CHANNEL_4;
             break;
         default:
@@ -229,7 +223,7 @@ void pwmout_period_us(pwmout_t* obj, int us)
     SystemCoreClockUpdate();
 
     TimHandle.Init.Period        = us - 1;
-    TimHandle.Init.Prescaler     = (uint16_t)(SystemCoreClock / 1000000) - 1; // 1 µs tick
+    TimHandle.Init.Prescaler     = (uint16_t)(SystemCoreClock / 1000000) - 1; // 1 ï¿½s tick
     TimHandle.Init.ClockDivision = 0;
     TimHandle.Init.CounterMode   = TIM_COUNTERMODE_UP;
     HAL_TIM_PWM_Init(&TimHandle);
