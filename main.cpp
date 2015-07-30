@@ -36,6 +36,7 @@ DigitalOut test_PA7(PA_7);
 DigitalOut test_PA6(PA_6);
 DigitalOut test_PA5(PA_5);
 DigitalOut test_PA4(PA_4);
+DigitalOut test_PB10(PB_10);
 int main() {
     motor1_pwm.period(0.001);
     motor2_pwm.period(0.001);
@@ -81,6 +82,7 @@ int main() {
         test_PA6 = 1;
         test_PA5 = 1;
         test_PA4 = 1;
+        test_PB10 = 1;
         
         wait(1); // 1 sec
         motor1_in1 = 0;
@@ -102,6 +104,7 @@ int main() {
         test_PA6 = 0;
         test_PA5 = 0;
         test_PA4 = 0;
+        test_PB10 = 0;
         wait(1); // 1 sec
         duty = duty + 0.1;
         if(duty >= 1.0f)
